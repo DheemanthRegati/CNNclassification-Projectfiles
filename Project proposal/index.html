@@ -1,0 +1,136 @@
+
+<!-- saved from url=(0044)http://www.niser.ac.in/~smishra/teach/cs460/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>GROUP-18 | Machine Learning</title>
+    <link href="./MLproject/smlab.css" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>
+    figcaption {
+      background-color: white;
+      color: black;
+      font-style: italic;
+      padding: 2px;
+      text-align: center;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>GROUP - 18</h1>
+            <hr>
+            <h2>Gender Detection from Pelvic X-ray Images Using Machine Learning</h2>
+        </header>
+        <p>
+            Dheemanth Reddy Regati (1711053) and Soumyadeep Khandual (1711134)
+        </p>
+        <hr>
+
+        <h3>Motivation</h3>
+        <p align="justify">
+            The aim of the project is to predict the gender from pelvic X-rays using supervised learning techniques. 
+            Previously work has been done in identifying gender from skull [1] and spine X-rays [2]. 
+            We want to achieve the same from pelvic X-rays. There are anatomical differences between male 
+            and female pelvis which can be used for classification using pattern recognition. Further depending on the quality of X-rays, 
+            we can use the same data set to predict age.
+        </p>
+
+        <h3>Anatomical Differences between Male and Female Pelvis</h3>
+        <p>  
+            <ul>
+                <li>The female pelvis is shorter and wider than the male pelvis.</li>
+                <li>Differences in pubic arch: The subpubic angle in females is wider as compared to males.</li>
+                <li>The sacrum of the female is shorter, wider, and has a greater curve, whereas the male sacrum is thinner, longer, 
+                    and is less curved.</li>
+                <li>The female pelvic brim is oval-shaped compared to heart-shaped in male.</li>
+            </ul>
+        </p>
+        <figure>
+            <img src="./MLproject/pelv-anatomy.png" alt="anatomical differences in male and female pelvis" style="width:100%;" class="center" >
+            <figcaption>Fig.1 - anatomical differences in male and female pelvis</figcaption>
+        </figure>
+        <h3>Plans and Algorithms</h3>
+        <ol>
+            <li>Using Convolutional Neural Network (CNN)</li>
+            <p align="justify">
+                CNNs are used for images recognition, pattern recognition, Objects detections, etc. 
+                CNN compares the images in small cluster of pixels at a time rather than pixel by pixel. 
+                Each cluster of pixel in the training data can be considered as features. 
+                By finding rough feature matches in roughly the same position in the two images, 
+                CNN can effectively find similarities and patterns. 
+                <br>
+                The sequence of events for the method:
+                <ol>
+                    <li>Data collection: Collecting and resizing every image to same size</li>
+                    <li>Edge detection to get a outline of pelvis</li>
+                    <li>Training CNN</li>
+                </ol>
+            </p>
+            
+            <li>Using CNN on Regions of Interest (ROI)</li>
+            <p align="justify">
+                Here we train CNN with images of region of interest instead of total image.
+                For example: In this case the region of interest can be the shape of sacrum. So we crop the image to keep only the sacrum part.
+                This eliminates a lot of the unwanted/irrelevant parts making the algorithm faster and more accurate.
+                <br>
+                The sequence of events for the method:
+                <ol>
+                    <li>Data collection: Collecting and resizing every image to same size</li>
+                    <li>Cropping the ROI</li>
+                    <li>Edge detection to get a outline of pelvis</li>
+                    <li>Training CNN</li>
+                </ol>
+            </p>
+                        
+            <li>Using Support Vector Machine (SVM)</li>
+            <p align="justify">
+                In this method we choose feature vectors to be: ratio of height to width of pelvis, length of sacrum and pubic arch angle. 
+                Then using a SVM we find the appropriate hyperplane separating the two labels.                 
+                <br>
+                The sequence of events for the method:
+                <ol>
+                    <li>Data collection: Collecting and resizing every image to same size</li>
+                    <li>Edge detection to get a outline of pelvis</li>
+                    <li>Extracting the feature values</li>
+                    <li>Training SVM</li>
+                </ol>
+            </p>
+        </ol>
+        <figure>
+            <img src="./MLproject/xray_edge.png" alt="anatomical differences in male and female pelvis"  style="width: max-content;" class="center">
+            <figcaption>Fig.2 - Pelvic X-ray (left) Canny edge detection at ROI - pelvic brim (right)</figcaption>
+        </figure>
+        <h3>Dataset</h3>
+        <p align="justify">
+            The X-ray images will be collected from Balaji Institute of Surgery research and Rehabilitation for the Disabled, Tirupati. 
+            We have obtained oral consent with the ethics committee, provided that the data will be anonymised, and will acquire 
+            the dataset after due protocols have been followed.
+        </p>
+
+        <h3>Timeline</h3>
+        <p align="justify">
+            <ul>
+                <li>Week 5: Getting X-ray images form orthopaedics lab</li>
+                <li>Week 6: Learning CNN and SVM</li>
+                <li>Week 7: Project milestone presentation</li>
+                <li>Week 8: Making images machine readable</li>
+                <li>Week 9-10: Implementing CNN and SVM</li>
+                <li>Week 11: Improving algorithms</li>
+                <li>week 13: Final presentation</li>
+            </ul>
+
+        </p>
+
+        <h3>References</h3>
+        <p align="justify">
+            <a href="https://www.ijrte.org/wp-content/uploads/papers/v7i5s3/E11170275S19.pdf">[1] B.J. Bipin Nair, Mathews Jose, S. Harikrishna. To Predict the Gender and Fracture from 
+                Skull X-ray Image from Various Image Analysis. Volume-7, Issue-5S3, International Journal of Recent Technology and Engineering (IJRTE), 2019.</a>
+            <br>
+            <a href="https://lhncbc.nlm.nih.gov/system/files/pub9781.pdf">[2] Zhiyun Xue, Sivaramakrishnan Rajaraman, Rodney Long, Sameer Antani, and George R. Thoma. Gender Detection from Spine X-ray Images
+            Using Deep Learning. IEEE 31st International Symposium on Computer-Based Medical Systems, 2018.</a>
+        </p>
+    </div>
+
+
+</body></html>
